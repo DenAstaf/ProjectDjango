@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+{% extends "store_app/base.html" %}
+<html lang="en">
+<head>
+    {% block title %}<title>{{ title }}</title>{% endblock %}
+</head>
+<body>
+    {% block content %}
+
+        <h2>Товары</h2>
+
+        {% for product in all_products %}
+            <div class="card" style="width: 18rem;">
+              <div class="card-body">
+                <h5 class="card-title">{{ product.name }}</h5>
+                <p class="card-text">{{ product.description }}</p>
+              </div>
+              <ul class="list-group list-group-flush">
+                <li class="list-group-item">Цена: {{ product.price }} р</li>
+              </ul>
+              <div class="card-body">
+                <a href="http://127.0.0.1:8000/product/{{ product.id }}/" class="card-link">Подробнее...</a>
+              </div>
+            </div>
+        {% endfor %}
+
+    {% endblock %}
+</body>
+</html>

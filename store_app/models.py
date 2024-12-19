@@ -8,6 +8,11 @@ class Product(models.Model):
     created_at = models.DateTimeField(auto_now_add=True)
     name_category = models.ForeignKey('Category', on_delete=models.PROTECT)
 
+    class Meta:
+        verbose_name = 'Продукт'
+        verbose_name_plural = 'Продукты'
+        ordering = ['-created_at']
+
     def __str__(self):
         return self.name
 
@@ -15,6 +20,11 @@ class Product(models.Model):
 class Category(models.Model):
     name_category = models.CharField(max_length=200, db_index=True, verbose_name='Название категории')
     description = models.TextField()
+
+    class Meta:
+        verbose_name = 'Категория'
+        verbose_name_plural = 'Категории'
+        ordering = ['name_category']
 
     def __str__(self):
         return self.name_category
