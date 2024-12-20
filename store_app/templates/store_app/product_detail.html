@@ -1,34 +1,28 @@
-<!DOCTYPE html>
 {% extends "store_app/base.html" %}
-<html lang="en">
-<head>
-    {% block title %}<title>{{ title }}</title>{% endblock %}
-</head>
-<body>
-    {% block content %}
 
-        <h2>Продукт</h2>
+{% block title %}
+    <title>{{ title }}</title>
+{% endblock %}
 
-        <div class="card" style="width: 18rem;">
-          <div class="card-body">
-            <h5 class="card-title">{{ product.name }}</h5>
-            <p class="card-text">{{ product.description }}</p>
-          </div>
-          <ul class="list-group list-group-flush">
-            <li class="list-group-item">Цена: {{ product.price }} р</li>
-          </ul>
-        </div>
-        <br>
-        <h4>Корректировка товара</h4>
-        <form method="post">
-            {% csrf_token %}
-            {{ form.as_p }}
-            <button type="submit">Сохранить изменения</button>
-        </form>
+{% block content %}
 
+    <h2>Продукт</h2>
 
+    <div class="card" style="width: 18rem;">
+      <div class="card-body">
+        <h5 class="card-title">{{ product.name }}</h5>
+        <p class="card-text">{{ product.description }}</p>
+      </div>
+      <ul class="list-group list-group-flush">
+        <li class="list-group-item">Цена: {{ product.price }} р</li>
+      </ul>
+    </div>
+    <br>
+    <h4>Корректировка товара</h4>
+    <form method="post">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit">Сохранить изменения</button>
+    </form>
 
-
-    {% endblock %}
-</body>
-</html>
+{% endblock %}
