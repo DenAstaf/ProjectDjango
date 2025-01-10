@@ -18,8 +18,12 @@
             <li class="list-group-item">Цена: {{ product.price }} р</li>
           </ul>
           <div class="card-body">
-            <a href="http://127.0.0.1:8000/product/{{ product.id }}/" class="card-link">Подробнее...</a>
+            <a href="{% url 'edit_product' product.id %}" class="card-link">Подробнее о товаре</a>
           </div>
+            <form method="post" action="{% url 'delete_product' product.id %}">
+                {% csrf_token %}
+                <button type="submit">Удалить {{ product.name }}</button>
+            </form>
         </div>
     {% endfor %}
 

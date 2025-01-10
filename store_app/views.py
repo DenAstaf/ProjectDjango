@@ -1,9 +1,8 @@
 from django.views.generic.detail import DetailView
-from django.views.generic import ListView
-from django.views.generic import CreateView, UpdateView
+from django.views.generic import ListView, CreateView, UpdateView, DeleteView
 from django.urls import reverse_lazy
 
-from .models import Product, Category
+from .models import Product
 from .forms import ProductForm
 
 
@@ -51,3 +50,9 @@ class EditProductView(UpdateView):
         context = super().get_context_data(**kwargs)
         context['title'] = 'Продукт'
         return context
+
+
+class DeleteProductView(DeleteView):
+    model = Product
+    template_name = 'store_app/all_products.html'
+    success_url = reverse_lazy('all_products')
