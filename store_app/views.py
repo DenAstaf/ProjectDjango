@@ -4,6 +4,7 @@ from django.urls import reverse_lazy
 
 from .models import Product
 from .forms import ProductForm
+from .tasks import log_add_product
 
 
 class AllProductView(ListView):
@@ -29,6 +30,16 @@ class AddProductView(CreateView):
     form_class = ProductForm
     template_name = 'store_app/add_product.html'
     success_url = reverse_lazy('all_products')
+
+    def form_valid(self, form):
+        # Метод родительского класса для сохранения товара
+        response = super().form_valid(form)
+        # Получает название товара из формы
+        product_name = form.cleaned_data['name']
+        # Вызов задачи для логирования
+        log_add_product.delay(product_name)
+
+        return response
 
     def get_context_data(self, *, object_list=None, **kwargs):
         context = super().get_context_data(**kwargs)

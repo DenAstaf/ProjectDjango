@@ -8,6 +8,9 @@ readme = "README.md"
 [tool.poetry.dependencies]
 python = "^3.13"
 django = "^5.1.4"
+redis = "^5.2.1"
+celery = {extras = ["redis"], version = "^5.4.0"}
+django-celery-results = "^2.5.1"
 
 
 [tool.poetry.group.dev.dependencies]
