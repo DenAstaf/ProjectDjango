@@ -1,0 +1,23 @@
+version: '3.8'
+
+services:
+  web:
+    build: .
+    command:
+    volumes:
+      - .:/app
+    ports:
+      - "8000:8000"
+    depends_on:
+      - redis
+
+  redis:
+    image: "redis:alpine"
+
+  celery:
+    build: .
+    command: poetry run celery -A config worker --loglevel=info
+    volumes:
+      - .:/app
+    depends_on:
+      - redis

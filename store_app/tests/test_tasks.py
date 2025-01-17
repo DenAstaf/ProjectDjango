@@ -1,6 +1,5 @@
 import pytest
 from django.urls import reverse
-from celery.result import AsyncResult
 from store_app.tasks import log_add_product
 
 
