@@ -12,6 +12,11 @@ redis = "^5.2.1"
 celery = {extras = ["redis"], version = "^5.4.0"}
 django-celery-results = "^2.5.1"
 
+[tool.poetry.group.dev.dependencies]
+pytest = "^8.3.4"
+pytest-django = "^4.9.0"
+pytest-mock = "^3.14.0"
+
 [build-system]
 requires = ["poetry-core"]
 build-backend = "poetry.core.masonry.api"
